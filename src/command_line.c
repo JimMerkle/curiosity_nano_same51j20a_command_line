@@ -184,11 +184,11 @@ int cl_help(void) {
 }
 
 int cl_add(void) {
-//    // verify argument count, to remove it from the table
-//    if(argc < 3) {
-//        log_msg("\r\nInvalid Arg cnt: %d Expected: %d\n", argc - 1, 2);
-//        return 0;
-//    }
+    // verify argument count, to remove it from the table
+    if(argc < 3) {
+        log_msg("\r\nInvalid Arg cnt: %d Expected: %d\n", argc - 1, 2);
+        return 0;
+    }
     log_msg("add..  A: %s  B: %s\n", argv[1], argv[2]);
     int A = (int) strtol(argv[1], NULL, 0); // allow user to use decimal or hex
     int B = (int) strtol(argv[2], NULL, 0);
