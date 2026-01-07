@@ -41,7 +41,7 @@ const COMMAND_ITEM cmd_table[] = {
     {"info",      "processor info",                                         cl_info},
     {"timer",     "timer test - measure 50ms OS sleep",                     cl_timer},
     {"logger",    "Log message test",                                       cl_logger_test},
-	{"version",   "display firmware version",                               cl_version},
+	 {"version",   "display firmware version",                               cl_version},
     {NULL,NULL,NULL}, /* end of table */
 };
 
