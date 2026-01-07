@@ -28,6 +28,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "definitions.h"                // SYS function prototypes
+#include "command_line.h"
 
 // Implement a getchar function, needed for Command Line
 // If character available, return character, else return EOF
