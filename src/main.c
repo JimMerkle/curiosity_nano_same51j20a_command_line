@@ -55,7 +55,8 @@ int main ( void )
     SYSTICK_TimerStart();
     //-------------------------------------------------------
     // Before we start TC0, reconfigure the period
-    /* Configure timer period */
+    /* TC0 is configured within the clock configurator to use GCLK2 (1 MHz) */
+    /* Configure TC0 timer period */
     TC0_REGS->COUNT32.TC_CC[0U] = 0xFFFFFFFFU;
     /* Clear all interrupt flags */
     TC0_REGS->COUNT32.TC_INTFLAG = (uint8_t)TC_INTFLAG_Msk;

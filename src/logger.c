@@ -61,7 +61,7 @@ int cl_logger_test(void) {
     uint32_t start_us;
     uint32_t stop_us;
 	// Measure time to push out some long log messages
-    start_us = TC0_Timer32bitCounterGet(); // read us hardware timer - 937,500Hz
+    start_us = TC0_Timer32bitCounterGet(); // read us hardware timer - 1MHz
 	// Push a minimum of 100 characters through the logger (per log message)
 	// Time to push 100 characters through a USART at 115200: 100 characters * 10 bits / character * 8.68us = 8.68ms
 	//
@@ -77,8 +77,8 @@ int cl_logger_test(void) {
 	log_msg("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\n");
 	log_msg("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\n");	// 10
     
-    stop_us = TC0_Timer32bitCounterGet(); // read us hardware timer - 937,500Hz
-    log_msg("\n10 - 100+ character messages queued in %u us",((stop_us - start_us)*16)/15);
+    stop_us = TC0_Timer32bitCounterGet(); // read us hardware timer - TC0, 1MHz
+    log_msg("\n10 - 100+ character messages queued in %u us",stop_us - start_us);
     
 	return 0;
 }
