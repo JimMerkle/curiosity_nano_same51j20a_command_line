@@ -67,6 +67,8 @@ int cl_reset(void);
 int cl_timer(void);
 int cl_info(void);
 int cl_version(void);
+int cl_cls(void);
+void text_in_box(const char *text, const char *color);
 int cl_logger_test(void);       // logger.c
 
 #endif // _command_line_h_

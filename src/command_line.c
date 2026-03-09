@@ -35,13 +35,14 @@ typedef struct {
 const COMMAND_ITEM cmd_table[] = {
     {"?",         "display help menu",                                      cl_help},
     {"help",      "display help menu",                                      cl_help},
+    {"cls",       "clear screen",                                           cl_cls},
     {"add",       "add <number> <number>",                                  cl_add},
     {"id",        "unique ID",                                              cl_id},
     {"reset",     "reset processor",                                        cl_reset},
     {"info",      "processor info",                                         cl_info},
     {"timer",     "timer test - measure 50ms OS sleep",                     cl_timer},
     {"logger",    "Log message test",                                       cl_logger_test},
-	 {"version",   "display firmware version",                               cl_version},
+    {"version",   "display firmware version",                               cl_version},
     {NULL,NULL,NULL}, /* end of table */
 };
 
@@ -51,10 +52,14 @@ char * argv[MAXWORDS]; // pointers into buffer
 int argc; // number of words (command & arguments)
 
 void cl_setup(void) {
-    // Turn on yellow text, print greeting, reset attributes
-    log_msg("\n" COLOR_YELLOW "Command Line parser, Version: %s, Date: %s" COLOR_RESET "\n",PROJECT_VERSION,__DATE__);
-    log_msg(COLOR_YELLOW "Enter \"help\" or \"?\" for list of commands" COLOR_RESET "\n");
-    log_msg(">"); // initial prompt
+    char banner[128];
+    // Turn on yellow on blue text, print greeting, version, date, reset color
+    snprintf(banner,sizeof(banner),"Command Line parser, %s, %s %s\n"
+                                   "Enter \"help\" or \"?\" for list of commands",
+                                   PROJECT_VERSION, __DATE__, __TIME__);
+    //log_msg("Length: %d\n",strlen(banner));
+    text_in_box(banner,COLOR_YELLOW_ON_BLUE);
+    log_msg(">"); // initial command line prompt
 }
 
 // Check for data available from USART interface.  If none present, just return.
@@ -78,7 +83,7 @@ void cl_loop(void)
         		log_msg("\n"); // newline
             	cl_process_buffer(); // process the null terminated buffer
             }
-    		log_msg("\n>");
+            log_msg("\n>");
             index = 0; // reset buffer index
             return;
           case _BS:
@@ -183,6 +188,13 @@ int cl_help(void) {
     return 0;
 }
 
+// Clear the screen
+int cl_cls(void) {
+   // VT-100 command to clear the screen and move cursor to upper left corner
+   log_msg("\x1B[2J\x1B[H");
+   return 0;
+}
+
 int cl_add(void) {
     // verify argument count, to remove it from the table
     if(argc < 3) {
@@ -266,3 +278,69 @@ int cl_version(void)
 	return 0;
 }
 
+void text_in_box(const char *text, const char *color)
+{
+    if (!text) {
+        return;
+    }
+
+    // First pass: determine longest line
+    size_t max_len = 0;
+    const char *p = text;
+    const char *line_start = p;
+
+    while (*p) {
+        if (*p == '\n') {
+            size_t len = (size_t)(p - line_start);
+            if (len > max_len) max_len = len;
+            line_start = p + 1;
+        }
+        p++;
+    }
+
+    // Handle last line (no trailing \n)
+    if (p != line_start) {
+        size_t len = (size_t)(p - line_start);
+        if (len > max_len) max_len = len;
+    }
+
+    // Print top border
+    if(color)log_msg("%s",color);
+    log_msg("+");
+    for (size_t i = 0; i < max_len + 2; i++)
+        log_msg("-");
+    log_msg("+\n");
+    if(color)log_msg(COLOR_RESET);
+
+    // Second pass: print each line padded
+    p = text;
+    line_start = p;
+
+    while (1) {
+        if (*p == '\n' || *p == 0) {
+            size_t len = (size_t)(p - line_start);
+            if(color)log_msg("%s",color);
+            log_msg("| %.*s", (int)len, line_start);
+
+            // pad remainder
+            for (size_t i = len; i < max_len; i++)
+                log_msg(" ");
+
+            log_msg(" |\n");
+            if(color)log_msg(COLOR_RESET);
+            if (*p == 0)
+                break;
+
+            line_start = p + 1;
+        }
+        p++;
+    }
+
+    // Bottom border
+    if(color)log_msg("%s",color);
+    log_msg("+");
+    for (size_t i = 0; i < max_len + 2; i++)
+        log_msg("-");
+    log_msg("+\n");
+    if(color)log_msg(COLOR_RESET);
+}

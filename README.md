@@ -79,3 +79,8 @@ https://developerhelp.microchip.com/xwiki/bin/view/software-tools/harmony/archiv
 https://www.youtube.com/watch?v=wZlUVmyrH54
 
 ```
+
+### Version History
+```
+00.05.11 - Add "cls" command to clear terminal screen. Add text_in_box() function.
+```
