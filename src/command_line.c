@@ -53,7 +53,7 @@ int argc; // number of words (command & arguments)
 
 void cl_setup(void) {
     char banner[128];
-    // Turn on yellow on blue text, print greeting, version, date, reset color
+    // Print banner with version and date using yellow on blue text
     snprintf(banner,sizeof(banner),"Command Line parser, %s, %s %s\n"
                                    "Enter \"help\" or \"?\" for list of commands",
                                    PROJECT_VERSION, __DATE__, __TIME__);
@@ -306,7 +306,7 @@ void text_in_box(const char *text, const char *color)
 
     // Print top border
     if(color)log_msg("%s",color);
-    log_msg("+");
+    log_msg("\n+");
     for (size_t i = 0; i < max_len + 2; i++)
         log_msg("-");
     log_msg("+\n");
