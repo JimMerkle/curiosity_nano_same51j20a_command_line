@@ -40,7 +40,7 @@ const COMMAND_ITEM cmd_table[] = {
     {"id",        "unique ID",                                              cl_id},
     {"reset",     "reset processor",                                        cl_reset},
     {"info",      "processor info",                                         cl_info},
-    {"timer",     "timer test - measure 50ms OS sleep",                     cl_timer},
+    {"timer",     "timer test - measure 50ms SYSTICK delay",                cl_timer},
     {"logger",    "Log message test",                                       cl_logger_test},
     {"version",   "display firmware version",                               cl_version},
     {NULL,NULL,NULL}, /* end of table */
@@ -241,10 +241,7 @@ int cl_reset(void) {
 }
 
 // Compare multiple timers..  SYSTICK Timer, TC0 Timer, 
-// TC0 timer is running at 15/16 MHz.  Multiply by 16, then divide by 15 for uSeconds
-// The 937,500Hz frequency works very well and extends the range of the counter 16X vs 15MHz.
-// The counter will rollover after 4581 seconds (76 minutes)
-// Add DWT->CYCCNT usage - This 32-bit counter rolls over every 35.79 seconds
+// TC0 timer is running at 1MHz.  Rolls over every 71.58 minutes
 int cl_timer(void) {
     log_msg("%s(), Timing SYSTICK_DelayMs(50)\n",__func__);
     uint32_t start_us = TC0_Timer32bitCounterGet(); // read us hardware timer

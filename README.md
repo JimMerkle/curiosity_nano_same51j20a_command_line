@@ -31,12 +31,22 @@ Adjustable target voltage
 MIC5353 LDO regulator controlled by the on-board debugger
 1.8-3.6v output voltage
 500 mA maximum output current (limited by ambient temperature and output voltage)
-
-Serial/CDC Port - Prewired
-The only SERCOM connected to pins 39 and 40 is SERCOM5
-SERCOM5 TX - PB16 (pin 39), SERCOM5 RX - PB17 (pin 40)
 ```
 ## Build Environment
+```
+MPLAB X IDE v6.25
+Microchip XC32 Compiler v4.60
+```
+
+### SERCOM5 - Serial/CDC Port - Prewired for USB Serial Communication
+```
+SERCOM5 TX - PAD0 - PB16 (pin 39)
+SERCOM5 RX - PAD1 - PB17 (pin 40)
+```
+![Configuration](SERCOM5_Configuration.jpg)
+![Pins](SERCOM5_Pins.jpg)
+
+### Directory Structure
 ```
  The build environment for Printf consists of the command_line repository cloned into a
  folder structure as follows:
@@ -54,6 +64,8 @@ SERCOM5 TX - PB16 (pin 39), SERCOM5 RX - PB17 (pin 40)
 |       +-- version.h                         | version string definition
 |   +-- README.md                             | This Readme.md file
 |   +-- CuriosityNanoBoard.jpg                | Curiosity Nano picture
+|   +-- SERCOM5_Configuration.jpg             | SERCOM5 configuration screenshot from MHC
+|   +-- SERCOM5_Pins.jpg                      | SERCOM5 pinout screenshot from MHC
 ```
 
 ### What is this repository for?
@@ -61,12 +73,7 @@ SERCOM5 TX - PB16 (pin 39), SERCOM5 RX - PB17 (pin 40)
 SAM E5x/D5x (curiosity nano development board)
 Demonstrate creating a Command Line project
 ```
-### How do I get set up?
-```
-Install MplabX IDE v6.25
-Install Microhip Compiler, XC32 v4.60
-```
-    
+   
 ### Help - Getting Started
 ```
 https://www.microchip.com/en-us/tools-resources/configure/mplab-harmony
