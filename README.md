@@ -46,6 +46,12 @@ SERCOM5 RX - PAD1 - PB17 (pin 40)
 ![Configuration](SERCOM5_Configuration.jpg)
 ![Pins](SERCOM5_Pins.jpg)
 
+### System Diagram
+![System Diagram](System_Diagram.jpg)
+```
+TC0 - 32-bit counter, incrementing every 1us  - Optional, supports microsecond timing
+```
+
 ### Directory Structure
 ```
  The build environment for Printf consists of the command_line repository cloned into a
@@ -64,6 +70,7 @@ SERCOM5 RX - PAD1 - PB17 (pin 40)
 |       +-- version.h                         | version string definition
 |   +-- README.md                             | This Readme.md file
 |   +-- CuriosityNanoBoard.jpg                | Curiosity Nano picture
+|   +-- System_Diagram.jpg                    | MHC "Project Graph" - system diagram
 |   +-- SERCOM5_Configuration.jpg             | SERCOM5 configuration screenshot from MHC
 |   +-- SERCOM5_Pins.jpg                      | SERCOM5 pinout screenshot from MHC
 ```
