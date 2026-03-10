@@ -184,13 +184,13 @@
                      displayName="command_line_default"
                      projectFiles="true">
         <logicalFolder name="components" displayName="components" projectFiles="true">
-          <itemPath>command_line_default/components/core.yml</itemPath>
+          <itemPath>command_line_default/components/evsys.yml</itemPath>
+          <itemPath>command_line_default/components/dfp.yml</itemPath>
+          <itemPath>command_line_default/components/tc0.yml</itemPath>
           <itemPath>command_line_default/components/sercom5.yml</itemPath>
           <itemPath>command_line_default/components/cmsis.yml</itemPath>
-          <itemPath>command_line_default/components/dfp.yml</itemPath>
           <itemPath>command_line_default/components/nvmctrl.yml</itemPath>
-          <itemPath>command_line_default/components/tc0.yml</itemPath>
-          <itemPath>command_line_default/components/evsys.yml</itemPath>
+          <itemPath>command_line_default/components/core.yml</itemPath>
         </logicalFolder>
         <itemPath>command_line_default/mcc-config.mc4</itemPath>
       </logicalFolder>
