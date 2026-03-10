@@ -338,6 +338,7 @@ void text_in_box(const char *text, const char *color)
     log_msg("+");
     for (size_t i = 0; i < max_len + 2; i++)
         log_msg("-");
-    log_msg("+\n");
-    if(color)log_msg(COLOR_RESET);
+    log_msg("+"); // lower right corner
+    if(color)log_msg(COLOR_RESET); // reset color BEFORE final line-feed
+    log_msg("\n");
 }
