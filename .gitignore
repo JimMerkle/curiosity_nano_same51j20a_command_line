@@ -15,9 +15,10 @@
 *.dep
 *.bin
 *.lst
+*.zip
 
 # MPLAB X / NetBeans project generated files
-nbproject/private/
+**/nbproject/private/
 **/.generated_files/
 **/.generated_files/**
 
@@ -39,11 +40,13 @@ nbproject/private/
 .DS_Store
 Thumbs.db
 
-# MCC / MPLAB generated files to ignore
-command_line.X/mcc-manifest*.yml
-command_line.X/nbproject/private/
-command_line.X/nbproject/Makefile-genesis.properties
-command_line.X/nbproject/Makefile-impl.mk
-command_line.X/nbproject/Makefile-local-default.mk
-command_line.X/nbproject/Makefile-variables.mk
-command_line.X/nbproject/Makefile-local-*.mk
+# MCC / MPLAB local customizations to ignore
+**/nbproject/Makefile-local-*.mk
+**/mcc-manifest-autosave.yml
+**/mcc-manifest-generated-success.yml
+
+# Keep project configuration files (these should be committed):
+# - nbproject/project.xml
+# - nbproject/configurations.xml
+# - nbproject/Makefile-*.mk (except local overrides above)
+# - nbproject/Makefile-genesis.properties
