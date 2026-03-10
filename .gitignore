@@ -38,3 +38,12 @@ nbproject/private/
 # OS files
 .DS_Store
 Thumbs.db
+
+# MCC / MPLAB generated files to ignore
+command_line.X/mcc-manifest*.yml
+command_line.X/nbproject/private/
+command_line.X/nbproject/Makefile-genesis.properties
+command_line.X/nbproject/Makefile-impl.mk
+command_line.X/nbproject/Makefile-local-default.mk
+command_line.X/nbproject/Makefile-variables.mk
+command_line.X/nbproject/Makefile-local-*.mk
